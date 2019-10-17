@@ -136,5 +136,74 @@ var sorting = (function() {
       AnimatedArray.prototype.length = function() {
         return this._ary.length;
       }
+
+      function bubblesort(aa) {
+        var n = aa.length();
+        for (var i = 0; i < n; i++) {
+          for (var j = 0; j < n - i - 1; j++) {
+            if (aa.lessThan(j + 1, j)) {
+              aa.swap(j, j + 1);
+            }
+          }
+        }
+      }
+    
+    
+      function selectionsort(aa) {
+        var n = aa.length();
+        for (var i = 0; i < n - 1; i++) {
+          var min_j = i;
+          for (var j = i; j < n; j++) {
+            if (aa.lessThan(j, min_j)) min_j = j;
+          }
+          aa.swap(i, min_j);
+        }
+      }
+    
+    
+      function insertionsort(aa) {
+        var n = aa.length();
+        for (var i = 1; i < n; i++) {
+          for (var j = i; j > 0 && aa.lessThan(j, j - 1); j--) {
+            aa.swap(j, j - 1);
+          }
+        }
+      }
+    
+      var algorithms = {
+        'bubblesort': bubblesort,
+        'selectionsort': selectionsort,       
+        'insertionsort': insertionsort,       
+      }
+    
+      function is_pivot_algo(algo) {
+        var pivot_algos = {
+          'quicksort': true,
+          'introsort': true,
+        };
+        return pivot_algos.hasOwnProperty(algo);
+      }
+    
+      function get_sort_fn(algo, pivot_type) {
+        if (!algorithms.hasOwnProperty(algo)) {
+          throw 'Invalid algorithm ' + algo;
+        }
+        var sort_fn = algorithms[algo];
+        if (is_pivot_algo(algo)) {
+          return function(aa) { sort_fn(aa, pivot_type); };
+        } else {
+          return sort_fn;
+        }
+      }
+      
+      return {
+        'AnimatedArray': AnimatedArray,
+        'get_sort_fn': get_sort_fn,
+        'is_pivot_algo': is_pivot_algo,
+        'algorithms': algorithms,
+      }
+    
+      return _sorting;
+
   })();
   
