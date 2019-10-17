@@ -169,7 +169,74 @@ var sorting = (function() {
           }
         }
       }
+     
+      //function to choose random pivot for quicksort partition
+      function choose_pivot(aa, pivot_type, left, right) {
+        if (typeof(left) === 'undefined') left = 0;
+        if (typeof(right) === 'undefined') right = aa.length() - 1;
+        var pivot = null;
+        if (pivot_type === 'random') {
+          pivot = randint(left, right);
+        } else if (pivot_type === 'first') {
+          pivot = left;
+        } else if (pivot_type === 'last') {
+          pivot = right;
+        } else if (pivot_type === 'middle') {
+          pivot = Math.round((left + right) / 2);
+        } else if (pivot_type === 'median3') {
+          if (left + 1 === right) {           
+            pivot = left;
+          } else {
+           
+            var middle = Math.round((left + right) / 2);
+            var LM = aa.lessThan(left, middle);
+            var MR = aa.lessThan(middle, right);
+            if (LM === MR) {
+              pivot = middle;
+            } else if (LM && !MR) {
+              pivot = aa.lessThan(left, right) ? right : left;
+            } else if (!LM && MR) {
+              pivot = aa.lessThan(left, right) ? left : right;
+            }
+          }
+        } else {
+          throw 'Invalid pivot_type ' + pivot_type;
+        }
+        return pivot;
+      }
     
+      //quicksort partition
+      function partition(aa, pivot_type, left, right) {
+        var pivot = choose_pivot(aa, pivot_type, left, right);
+        aa.swap(pivot, right);    
+        
+        pivot = left;
+        for (var i = left; i < right; i++) {
+          if (aa.lessThan(i, right)) {
+            if (i != pivot) {
+              aa.swap(i, pivot);
+            }
+            pivot += 1
+          }
+        }
+        aa.swap(right, pivot);
+    
+        return pivot;
+      }
+    
+    
+      function quicksort(aa, pivot_type, left, right) {
+        var n = aa.length();
+        if (typeof(left) === 'undefined') left = 0;
+        if (typeof(right) === 'undefined') right = n - 1;
+    
+        if (left >= right) return;
+    
+        var pivot = partition(aa, pivot_type, left, right);
+        quicksort(aa, pivot_type, left, pivot - 1);
+        quicksort(aa, pivot_type, pivot + 1, right);
+      }
+      
       var algorithms = {
         'bubblesort': bubblesort,
         'selectionsort': selectionsort,       
