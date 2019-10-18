@@ -1,8 +1,8 @@
 var sorting = (function() {
 
-    var DEFAULT_COLOR = '#777';
-    var COMPARE_COLOR = '#00f';
-    var SWAP_COLOR = '#f00';
+    var DEFAULT_COLOR = '#B0E0E6';
+    var COMPARE_COLOR = '#000080';
+    var SWAP_COLOR = '#8B0000';
 
     function randint(low, high) {
         // Return a random integer in the range [low, high] inclusive.
@@ -365,13 +365,16 @@ var sorting = (function() {
       var algorithms = {
         'bubblesort': bubblesort,
         'selectionsort': selectionsort,       
-        'insertionsort': insertionsort,       
+        'insertionsort': insertionsort,
+        'heapsort': heapsort,
+        'quicksort': quicksort,
+        'mergesort': mergesort,       
       }
     
       function is_pivot_algo(algo) {
         var pivot_algos = {
           'quicksort': true,
-          'introsort': true,
+          //'introsort': true,
         };
         return pivot_algos.hasOwnProperty(algo);
       }
