@@ -3,6 +3,7 @@ body {
 }
 #main-canvas{
     padding-top: 25px;
+    padding-bottom: 25px;
 }
 .compare {
     font-weight: bold;
