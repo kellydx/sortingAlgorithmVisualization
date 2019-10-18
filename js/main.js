@@ -320,6 +320,47 @@ var sorting = (function() {
           aa.swap(swaps[i][0] + left, swaps[i][1] + left);
         }
       }
+
+      function heapsort(aa, left, right) {
+        if (typeof(left) === 'undefined') left = 0;
+        if (typeof(right) === 'undefined') right = aa.length() - 1;
+        var n = right - left + 1;
+    
+        function sift_down(start, end) {
+          var root = start;
+          while (true) {
+            var left_child = 2 * (root - left) + 1 + left;
+            var right_child = 2 * (root - left) + 2 + left;
+            if (left_child > end) break;
+    
+            var swap = root;
+            if (aa.lessThan(swap, left_child)) {
+              swap = left_child;
+            }
+            if (right_child <= end && aa.lessThan(swap, right_child)) {
+              swap = right_child;
+            }
+            if (swap === root) {
+              return;
+            }
+            aa.swap(root, swap);
+            root = swap;
+          }
+        }
+            
+        var start = Math.floor(n / 2) - 1 + left;
+        while (start >= left) {
+          sift_down(start, right);
+          start--;
+        }    
+        
+        var end = right;
+        while (end > left) {
+          aa.swap(end, left);
+          end--;
+          sift_down(left, end);
+        }
+      } 
     
       var algorithms = {
         'bubblesort': bubblesort,
