@@ -39,7 +39,7 @@
             <label for='#init-select'>Array Condition</label>
             <select class='form-control' id='init-select'>
               <option value='random'>Unsorted</option>
-              <option value='sorted'>Sorted</option>
+              
               <option value='reversed'>Reversed</option>
             </select>
           </div>
@@ -71,6 +71,58 @@
         </div>
       </div>
     </div>
-    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-50623594-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script>
+      $(function() {
+        var aa = null;
+
+        // dynamic sizing canvas
+        var resize_canvas = function() {
+          $('#main-canvas').width($('#canvas-div').width());
+        }
+        resize_canvas();
+        $(window).resize(resize_canvas);
+
+        // Disable pivot select option for now
+        var update_pivot_select = function() {
+          var algo = $('#algo-select').val();
+          var pivot_algo = sorting.is_pivot_algo(algo);
+          $('#pivot-select').prop('disabled', !pivot_algo);
+          $('#pivot-select-div').toggleClass('hidden', !pivot_algo);
+        }
+        update_pivot_select();
+        $('#algo-select').change(update_pivot_select);
+
+        $('#start-btn').click(function() {
+          if (aa !== null) aa.cancel();
+
+          var n = parseInt($('#array-size').val());
+          var interval = parseInt($('#interval').val());
+          var algo = $('#algo-select').val();
+          var pivot_type = $('#pivot-select').val();
+          var sort_fn = sorting.get_sort_fn(algo, pivot_type);
+         
+          var ary = [];
+          for (var i = 0; i < n; i++) {
+            ary.push(Math.random() - 0.5);
+          }
+          var init = $('#init-select').val();
+          if (init === 'reversed') {
+            ary.sort(function(a, b) {return b - a; });
+          }
+
+          var canvas = document.getElementById('main-canvas');
+          aa = new sorting.AnimatedArray(ary, canvas, interval);
+          sort_fn(aa);
+        });
+      });
+    </script>
   </body>
   <html></html>
