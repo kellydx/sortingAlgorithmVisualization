@@ -36,14 +36,39 @@
             </select>
           </div>
           <div class='form-group'>
-            <label for='#init-select'>Initial array</label>
+            <label for='#init-select'>Array Condition</label>
             <select class='form-control' id='init-select'>
-              <option value='random'>Random</option>
+              <option value='random'>Unsorted</option>
               <option value='sorted'>Sorted</option>
               <option value='reversed'>Reversed</option>
             </select>
           </div>
-          
+          <div class='form-group' id='pivot-select-div'>
+            <label for='#pivot-select'>Choose Pivot</label>
+            <select class='form-control' id='pivot-select'>
+              <option value='random'>Random</option>
+              <option value='first'>First</option>
+              <option value='middle'>Middle</option>
+              <option value='last'>Last</option>
+              <option value='median3'>Median</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <label for='#interval'>Interval (ms)</label>
+            <input id='interval' class='form-control' type='number' value="20"/>
+          </div>
+          <p class='text-muted'>
+            Comparisons are <span class='compare'>blue</span>,
+            <br>
+            Swaps are <span class='swap'>red</span>.
+          </p>
+          <div class='text-center'>
+            <button class='btn btn-lg btn-primary' id='start-btn'>Start</button>
+          </div>
+        </div>
+        <div class='col-xs-9' id='canvas-div'>
+          <canvas width="800px" height="600px" id="main-canvas">
+        </div>
       </div>
     </div>
     
