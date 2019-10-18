@@ -1,78 +1,61 @@
 <html>
   <head>
-    <title>test</title>
+    <title>Sorting Algorithm Visualizer</title>
     <script src='js/lib/jquery-1.11.3.min.js'></script>
     <script src='js/lib/bootstrap.min.js'></script>    
-    <script src='js/main.js'></script> 
-    
+    <script src='js/main.js'></script>     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <style>
-      .compare {
-        font-weight: bold;
-        color: #000080;
-      }
-      .swap {
-        font-weight: bold;
-        color: #8B0000;
-      }
-    </style>
+    <link rel = "stylesheet" type = "text/css" href = "css/sorting.css" />
+    
   </head>
   <body>
-    <div class='container-fluid'>
-      <div class='row'>
-        <div class='col-xs-3'>
-          <div class='form-group'>
-            <label for='#array-size'>Array Size</label>
-            <input id='array-size' class='form-control' type='number' value="50"/>
-          </div>
-          <div class='form-group'>
-            <label for='#algo-select'>Algorithm</label>
-            <select class='form-control' id='algo-select'>
-              <option value='bubblesort'>Bubble sort</option>
-              <option value='selectionsort'>Selection sort</option>
-              <option value='insertionsort'>Insertion sort</option>   
-              <option value='quicksort'>Quicksort</option>
-              <option value='heapsort'>Heapsort</option>
-              <option value='mergesort'>Merge sort</option>
-            </select>
-          </div>
-          <div class='form-group'>
-            <label for='#init-select'>Array Condition</label>
-            <select class='form-control' id='init-select'>
-              <option value='random'>Unsorted</option>
-              
-              <option value='reversed'>Reversed</option>
-            </select>
-          </div>
-          <div class='form-group' id='pivot-select-div'>
-            <label for='#pivot-select'>Choose Pivot</label>
-            <select class='form-control' id='pivot-select'>
-              <option value='random'>Random</option>
-              <option value='first'>First</option>
-              <option value='middle'>Middle</option>
-              <option value='last'>Last</option>
-              <option value='median3'>Median</option>
-            </select>
-          </div>
-          <div class='form-group'>
-            <label for='#interval'>Interval (ms)</label>
-            <input id='interval' class='form-control' type='number' value="20"/>
-          </div>
-          <p class='text-muted'>
-            Comparisons are <span class='compare'>blue</span>,
-            <br>
-            Swaps are <span class='swap'>red</span>.
-          </p>
-          <div class='text-center'>
-            <button class='btn btn-lg btn-primary' id='start-btn'>Start</button>
-          </div>
+      <center><h2>Sorting Algorithm Visualizer</h2></center>    
+      <div id="outer">
+        <div class='form-group'>
+          <label for='#array-size'><strong>Array Size</strong></label>
+          <input id='array-size' class='form-control' type='number' value="30"/>
         </div>
-        <div class='col-xs-9' id='canvas-div'>
-          <canvas width="800px" height="600px" id="main-canvas">
+        <div class='form-group'>
+          <label for='#algo-select'><strong>Algorithm</strong></label>
+          <select class='form-control' id='algo-select'>
+          <option value='bubblesort'>Bubble sort</option>
+          <option value='selectionsort'>Selection sort</option>
+          <option value='insertionsort'>Insertion sort</option>   
+          <option value='quicksort'>Quicksort</option>
+          <option value='heapsort'>Heapsort</option>
+          <option value='mergesort'>Merge sort</option>
+          </select>
         </div>
-      </div>
-    </div>
+        <div class='form-group'>
+          <label for='#init-select'><strong>Array Condition</strong></label>
+          <select class='form-control' id='init-select'>
+            <option value='random'>Unsorted</option>              
+            <option value='reversed'>Reversed</option>
+          </select>
+        </div>
+        <div class='form-group' id='pivot-select-div'>
+          <label for='#pivot-select'><strong>Choose Pivot</strong></label>
+          <select class='form-control' id='pivot-select'>
+            <option value='random'>Random</option>
+            <option value='first'>First</option>
+            <option value='middle'>Middle</option>
+            <option value='last'>Last</option>
+            <option value='median3'>Median</option>
+          </select>
+          </div>
+        <div class='form-group'>
+          <label for='#interval'><strong>Interval (ms)</strong></label>
+          <input id='interval' class='form-control' type='number' value="20"/>
+        </div>
+          
+        <div class='text-center'>
+          <button class='btn btn-lg btn-primary' id='start-btn'>Start</button>
+        </div>
+  </div>
+  <center>
+    <canvas width="800px" height="600px" id="main-canvas">
+  </center>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
