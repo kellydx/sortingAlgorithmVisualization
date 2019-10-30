@@ -22,6 +22,10 @@ Hello! I built this application to brush up my knowledge on six fundamental sort
 ## Inspiration/ Credits
 
 https://github.com/clementmihailescu/Sorting-Visualizer
+
 https://github.com/vbohush/SortingAlgorithmAnimations
+
 https://github.com/kenspirit/visual-alg
+
 https://github.com/wayne-stewart/js-visual-sort
+
