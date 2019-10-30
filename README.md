@@ -1,17 +1,16 @@
 # Sorting Algorithm Visualization
-Hello! I built this application in order to brush up my knowledge about different sorting algorithms.
-You can see the live demo here:
-
-Thanks for stopping by!
-
+Hello! I built this application to brush up my knowledge on six fundamental sorting algorithms.
 
 ## Algorithm Implemented
 
-1. QuickSort
-2. BubbleSort
-3. SelectionSort
+1. Quick Sort
+2. Bubble Sort
+3. Selection Sort
+4. Heap Sort
+5. Insertion Sort
+6. Merge Sort
 
-## About Sorting Algorithms
+## About Sorting Algorithms demonstarted in this program
 * [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 * [Insertion sort](https://en.wikipedia.org/wiki/Insertion_sort)
 * [Quicksort](https://en.wikipedia.org/wiki/Quicksort)
@@ -22,3 +21,7 @@ Thanks for stopping by!
 
 ## Inspiration/ Credits
 
+https://github.com/clementmihailescu/Sorting-Visualizer
+https://github.com/vbohush/SortingAlgorithmAnimations
+https://github.com/kenspirit/visual-alg
+https://github.com/wayne-stewart/js-visual-sort
